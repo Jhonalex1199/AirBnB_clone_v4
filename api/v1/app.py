@@ -19,6 +19,12 @@ def teardown_app_context(self):
     storage.close()
 
 
+@app.errorhandler(404)
+def not_found(error):
+    """ not found """
+    return make_response(jsonify({"error": "Not found"}), 404)
+
+
 if __name__ == "__main__":
     host = '0.0.0.0'
     port = '5000'
