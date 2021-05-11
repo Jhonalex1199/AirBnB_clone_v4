@@ -80,4 +80,3 @@ def cities_routes2(state_id=None):
             storage.new(new_city)
             storage.save()
             return make_response(jsonify(new_city.to_dict()), 201)
-            
