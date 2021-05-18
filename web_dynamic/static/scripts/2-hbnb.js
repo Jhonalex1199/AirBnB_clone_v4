@@ -15,18 +15,17 @@ $(document).ready(function () {
       }
     });
 
+  const status = () => {
     $.ajax({
-        url: 'http://localhost:5001/api/v1/status/',
-        success: function (data) {
-        console.log(data);
-          if (data.status === 'OK') {
-            $('div#api_status').addClass('available');
-          } else {
-            $('div#api_status').removeClass('available');
-          }
-        },
-        error: function (error) {
-          console.log('error', error);
-        }
-      });
-  });
+      type: 'GET',
+      url: 'http://0.0.0.0:5001/api/v1/status/',
+      success: (response) => {
+        $('DIV#api_status').addClass('available');
+      }
+    }).fail(function (jqXHR, textStatus, error) {
+      $('DIV#api_status').removeClass('available');
+      $('DIV#api_status').css('background-color', '#CCCCCC');
+    });
+  };
+  status();
+});
